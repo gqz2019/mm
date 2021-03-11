@@ -84,31 +84,31 @@
             }
         },
         template: `
-        <div v-if="item.children">
-            <template v-if="item.children.length == 0">
-                <el-menu-item :index="item.path">
-                <img :src="item.icon">&nbsp;&nbsp;
-                {{item.title}}
-                </el-menu-item>
-            </template>
+          <div v-if="item.children">
+          <template v-if="item.children.length == 0">
+            <el-menu-item :index="item.path">
+              <img :src="item.icon">&nbsp;&nbsp;
+              {{ item.title }}
+            </el-menu-item>
+          </template>
 
-            <el-submenu v-else :index="item.path">
-            <template slot="title" >
-                    <img :src="item.icon">&nbsp;&nbsp;
-                {{item.title}}
+          <el-submenu v-else :index="item.path">
+            <template slot="title">
+              <img :src="item.icon">&nbsp;&nbsp;
+              {{ item.title }}
             </template>
 
             <template v-for="child in item.children">
-                <sidebar-item
-                v-if="child.children&&child.children.length>0"
-                :item="child"
-                :key="child.path"/>
-                <el-menu-item v-else :key="child.path" :index="child.path" style='padding-left:53px'>
-                <a :href="child.linkUrl" target="right">{{child.title}}</a>
-                </el-menu-item>
+              <sidebar-item
+                  v-if="child.children&&child.children.length>0"
+                  :item="child"
+                  :key="child.path"/>
+              <el-menu-item v-else :key="child.path" :index="child.path" style='padding-left:53px'>
+                <a :href="child.linkUrl" target="right">{{ child.title }}</a>
+              </el-menu-item>
             </template>
-            </el-submenu>
-        </div>`
+          </el-submenu>
+          </div>`
     })
     new Vue({
         el: '#app',
@@ -140,8 +140,12 @@
             handleClose(key, keyPath) {
                 // console.log(key, keyPath);
             },
-            logout(){
-                window.location.href = "../login.html";
+            logout() {
+                axios.get("/user/logout").then(response=>{
+                    sessionStorage.removeItem("userName");
+                    window.location.href = "../login.html";
+                })
+
             },
             isClossTabFun() {
                 if (!this.isCollapse) {

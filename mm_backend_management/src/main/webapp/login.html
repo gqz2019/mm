@@ -58,7 +58,10 @@
                     mobile: '',
                     code: '',
                     checked: '',
-                    info: ''
+                    info: '',
+                    userName: '',
+                    pwd: ''
+
                 },
                 rules: {
                     userName: [
@@ -85,7 +88,20 @@
                                     username: this.form.userName,
                                     password: this.form.pwd
                                 };
-                                window.location.href = "pages/index.html";
+                                axios.post("http://localhost:8080/mm_backend_management/user/login.do", formData).then(response => {
+                                        if (response.data.flag) {
+
+                                            //登录成功
+                                            sessionStorage.setItem("userName", formData.username)
+                                            window.location.href = "pages/index.html";
+
+                                        } else {
+                                            //登陆失败
+                                            this.form.info = response.data.message;
+                                        }
+                                    }
+                                )
+
                             }
                         });
                     }
