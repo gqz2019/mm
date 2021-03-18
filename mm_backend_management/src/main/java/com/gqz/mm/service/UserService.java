@@ -7,12 +7,15 @@ import org.apache.ibatis.session.SqlSession;
 
 
 
+/**
+ * @author gqz20
+ */
 public class UserService {
     public User login(User user) throws Exception {
         SqlSession sqlSession = SqlSessionFactoryUtils.openSqlSession();
         UserDao dao = sqlSession.getMapper(UserDao.class);
         User loginUser = dao.findByUserName(user.getUsername());
-
+        SqlSessionFactoryUtils.commitAndClose(sqlSession);
         //判断
         if (loginUser != null) {
             //用户存在
