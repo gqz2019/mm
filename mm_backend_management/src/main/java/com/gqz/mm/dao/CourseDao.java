@@ -1,6 +1,9 @@
 package com.gqz.mm.dao;
 
+import com.gqz.mm.entity.QueryPageBean;
 import com.gqz.mm.pojo.Course;
+
+import java.util.List;
 
 /**
  * @program: mm
@@ -10,4 +13,8 @@ import com.gqz.mm.pojo.Course;
  **/
 public interface CourseDao {
     void add(Course course);
+
+    Long findTotalCount(QueryPageBean queryPageBean);
+
+    List<Course> findPageList(QueryPageBean queryPageBean);
 }

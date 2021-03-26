@@ -1,6 +1,8 @@
 package com.gqz.mm.controller;
 
 import com.gqz.mm.constants.Constants;
+import com.gqz.mm.entity.PageResult;
+import com.gqz.mm.entity.QueryPageBean;
 import com.gqz.mm.entity.Result;
 import com.gqz.mm.pojo.Course;
 import com.gqz.mm.pojo.User;
@@ -21,13 +23,14 @@ import java.util.Date;
 @Controller
 public class CourseController {
     /**
-     *<p>描述: 添加学科的方法<p>
+     *<p>描述: 学科管理的方法<p>
      *@method add
      *@param request, response+
      *@return void
      *@author gqz20
      *@CreateDate 2021/3/11 11:43
      */
+    private CourseService courseService = new CourseService();
     @RequestMapping("/course/add")
     public void add(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //那请求参数
@@ -41,13 +44,24 @@ public class CourseController {
             course.setUserId(user.getId());
             course.setOrderNo(2);
             //调用service方法
-            CourseService courseService = new CourseService();
+
             courseService.add(course);
             //响应结果
             JsonUtils.printResult(response,new Result(true,"添加成功"));
         } catch (Exception e) {
             e.printStackTrace();
             JsonUtils.printResult(response,new Result(false,"添加失败"));
+        }
+    }
+    @RequestMapping("/course/findByPage")
+    public void findByPage(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        try {
+            QueryPageBean queryPageBean = JsonUtils.parseJSON2Object(request, QueryPageBean.class);
+            PageResult pageResult =courseService.findByPage(queryPageBean);
+            JsonUtils.printResult(response,new Result(true,"查询成功",pageResult));
+        } catch (Exception e) {
+            e.printStackTrace();
+            JsonUtils.printResult(response,new Result(false,"查询失败",null));
         }
     }
 }

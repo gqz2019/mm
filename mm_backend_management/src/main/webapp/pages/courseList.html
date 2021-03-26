@@ -196,80 +196,21 @@
                 console.log("学科分页列表请求参数：");
                 console.log(params);
                 // 发送请求获取数据
-                let response = {
-                    data: {
-                        "flag": true,
-                        "message": "获取学科列表成功",
-                        "result": {
-                            "rows": [
-                                {
-                                    "catalogQty": 10,
-                                    "createDate": "2019-08-08 00:00:00.0",
-                                    "creator": "admin",
-                                    "id": 1,
-                                    "isShow": 0,
-                                    "name": "Java",
-                                    "questionQty": 1,
-                                    "tagQty": 5
-                                },
-                                {
-                                    "catalogQty": 10,
-                                    "createDate": "2019-08-08 00:00:00.0",
-                                    "creator": "admin",
-                                    "id": 2,
-                                    "isShow": 0,
-                                    "name": "Python",
-                                    "questionQty": 1,
-                                    "tagQty": 5
-                                },
-                                {
-                                    "catalogQty": 10,
-                                    "createDate": "2019-08-08 00:00:00.0",
-                                    "creator": "admin",
-                                    "id": 3,
-                                    "isShow": 0,
-                                    "name": "大数据",
-                                    "questionQty": 1,
-                                    "tagQty": 5
-                                },
-                                {
-                                    "catalogQty": 10,
-                                    "createDate": "2019-08-08 00:00:00.0",
-                                    "creator": "admin",
-                                    "id": 4,
-                                    "isShow": 0,
-                                    "name": "Php",
-                                    "questionQty": 1,
-                                    "tagQty": 5
-                                },
-                                {
-                                    "catalogQty": 10,
-                                    "createDate": "2019-08-14 09:01:35.0",
-                                    "creator": "admin",
-                                    "id": 8,
-                                    "isShow": 0,
-                                    "name": "888",
-                                    "questionQty": 1,
-                                    "tagQty": 5
-                                },
-                                {
-                                    "catalogQty": 10,
-                                    "createDate": "2019-08-14 09:01:38.0",
-                                    "creator": "admin",
-                                    "id": 9,
-                                    "isShow": 0,
-                                    "name": "2",
-                                    "questionQty": 1,
-                                    "tagQty": 5
-                                }
-                            ],
-                            "total": 15
-                        }
+                axios.post("http://127.0.0.1:8080/mm_backend_management/course/findByPage.do",params).then(response=>{
+                    if (response.data.flag) {
+                        this.pagination.total = response.data.result.total;
+                        this.items = response.data.result.rows;
+                    }else {
+                        this.$message(
+                            {
+                                type:"error",
+                                message:response.data().result.message
+                            }
+                        )
                     }
-                };
+                })
 
-                this.pagination.total = response.data.result.total;
-                this.items = response.data.result.rows;
+
             },
             // 清除
             handleRest() {

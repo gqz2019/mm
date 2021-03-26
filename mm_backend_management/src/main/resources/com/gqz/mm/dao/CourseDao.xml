@@ -4,7 +4,34 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gqz.mm.dao.CourseDao">
 
+    <sql id="select_course">
+        <where>
+            <if test="queryParams!=null">
+                <if test="queryParams.status!=null and queryParams.status!=''">
+                    and isShow=#{queryParams.status}
+                </if>
+                <if test="queryParams.name!=null and queryParams.name!=''">
+                    and name like concat("%",#{queryParams.name},"%")
+                </if>
+            </if>
+        </where>
+    </sql>
+
     <insert id="add" parameterType="course">
         insert into mm.t_course values (null,#{name},#{icon},#{createDate},#{isShow},#{userId},#{orderNo})
     </insert>
+    <select id="findTotalCount" parameterType="queryPageBean" resultType="long">
+        select count(*) from mm.t_course
+        <include refid="select_course"></include>
+    </select>
+    <select id="findPageList" resultType="com.gqz.mm.pojo.Course" parameterType="queryPageBean">
+        select id,name,createDate,isShow,
+        (select count(*) from mm.t_catalog where courseId=c.id ) catalogQty,
+        (select count(*) from mm.t_tag where courseId=c.id ) tagId,
+        (select count(*) from mm.t_question where courseId=c.id ) questionQty,
+        (select count(*) from mm.t_user where c.id=c.userId ) creator
+        from mm.t_course c
+        <include refid="select_course"></include>
+        limit #{offset},#{pageSize}
+    </select>
 </mapper>
