@@ -64,4 +64,32 @@ public class CourseController {
             JsonUtils.printResult(response,new Result(false,"查询失败",null));
         }
     }
+    @RequestMapping("/course/update")
+    public void update(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        try {
+            Course course = JsonUtils.parseJSON2Object(request, Course.class);
+            courseService.update(course);
+            //success
+            JsonUtils.printResult(response,new Result(true,"修改成功",null));
+        } catch (Exception e) {
+            e.printStackTrace();
+            //false
+            JsonUtils.printResult(response,new Result(false,"修改失败",null));
+        }
+
+    }
+    @RequestMapping("/course/delete")
+    public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+            //1. 获取请求参数id
+            Integer id = Integer.valueOf(request.getParameter("id"));
+            //2. 调用业务层的方法，根据id删除学科
+            courseService.deleteById(id);
+            //删除成功
+            JsonUtils.printResult(response,new Result(true,"删除学科成功"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            JsonUtils.printResult(response,new Result(false,e.getMessage()));
+        }
+    }
 }

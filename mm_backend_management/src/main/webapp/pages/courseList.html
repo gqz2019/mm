@@ -33,7 +33,7 @@
                         <el-select placeholder="请选择" v-model="requestParameters.status">
                             <el-option :key="item.id" :label="item.value" :value="item.id"
                                        v-for="item in baseData.isShow">
-							</el-option>
+                            </el-option>
                         </el-select>
                     </el-form-item>
                     <el-form-item>
@@ -196,15 +196,15 @@
                 console.log("学科分页列表请求参数：");
                 console.log(params);
                 // 发送请求获取数据
-                axios.post("http://127.0.0.1:8080/mm_backend_management/course/findByPage.do",params).then(response=>{
+                axios.post("http://127.0.0.1:8080/mm_backend_management/course/findByPage.do", params).then(response => {
                     if (response.data.flag) {
                         this.pagination.total = response.data.result.total;
                         this.items = response.data.result.rows;
-                    }else {
+                    } else {
                         this.$message(
                             {
-                                type:"error",
-                                message:response.data().result.message
+                                type: "error",
+                                message: response.data().result.message
                             }
                         )
                     }
@@ -273,32 +273,33 @@
                         console.log("学科添加请求参数：");
                         console.log(params);
                         // 发送请求
-						axios.post("/mm_backend_management/course/add.do",params).then(response=>{
-							if (response.data.flag) {
-								//添加成功
-								this.$message.success("添加成功");
-								this.$message({
-									type:"success",
-									showClose:true,
-									message:response.data.message
-								})
+                        axios.post("/mm_backend_management/course/add.do", params).then(response => {
+                            if (response.data.flag) {
+                                //添加成功
+                                this.$message.success("添加成功");
+                                this.$message({
+                                    type: "success",
+                                    showClose: true,
+                                    message: response.data.message
+
+                                })
 
 
-								this.dialogFormVisible = false;
-								this.getList();
-							}else {
-								//添加失败
-								this.$message.success("添加失败");
-								this.$message({
-									type:"error",
-									showClose:true,
-									message:response.data.message
-								})
+                                this.dialogFormVisible = false;
+                                this.getList();
+                            } else {
+                                //添加失败
+                                this.$message.success("添加失败");
+                                this.$message({
+                                    type: "error",
+                                    showClose: true,
+                                    message: response.data.message
+                                })
 
 
-								this.dialogFormVisible = false;
-							}
-						})
+                                this.dialogFormVisible = false;
+                            }
+                        })
 
 
                     }
@@ -311,8 +312,28 @@
                         let params = this.form;
                         console.log("学科更新请求参数：");
                         console.log(params);
-                        this.$message.success("更新成功");
-                        this.dialogFormVisible = false;
+                        axios.post("http://127.0.0.1:8080/mm_backend_management/course/update.do", params).then(response => {
+                            if (response.data.flag) {
+                                this.$message(
+                                    {
+                                        type: "success",
+                                        message: response.data().result.message
+                                        showClose: true
+                                    }
+                                )
+                                this.getList()
+                                this.dialogFormVisible = false;
+                            } else {
+                                this.$message(
+                                    {
+                                        type: "error",
+                                        message: response.data().result.message
+                                    }
+                                )
+                            }
+                        })
+
+
                     }
                 });
             },

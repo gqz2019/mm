@@ -17,4 +17,8 @@ public interface CourseDao {
     Long findTotalCount(QueryPageBean queryPageBean);
 
     List<Course> findPageList(QueryPageBean queryPageBean);
+
+    void update(Course course);
+
+    void deleteById(Integer id);
 }
