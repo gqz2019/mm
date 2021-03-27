@@ -18,13 +18,19 @@
     </sql>
 
     <insert id="add" parameterType="course">
-        insert into mm.t_course values (null,#{name},#{icon},#{createDate},#{isShow},#{userId},#{orderNo})
+        insert into mm.t_course
+        values (null, #{name}, #{icon}, #{createDate}, #{isShow}, #{userId}, #{orderNo})
     </insert>
     <update id="update" parameterType="course">
-        update mm.t_course set name=#{name},isShow=#{isShow} where id=#{id}
+        update mm.t_course
+        set name=#{name},
+            isShow=#{isShow}
+        where id = #{id}
     </update>
     <delete id="deleteById" parameterType="int">
-        delete from mm.t_course where id=#{id}
+        delete
+        from mm.t_course
+        where id = #{id}
     </delete>
     <select id="findTotalCount" parameterType="queryPageBean" resultType="long">
         select count(*) from mm.t_course
