@@ -10,7 +10,7 @@
         where courseId = #{id}
     </select>
     <select id="findCatalogListByCourseId" resultType="Catalog" parameterType="int">
-        select id name
+        select id,name
         from mm.t_catalog
         where courseId = #{courseId}
     </select>

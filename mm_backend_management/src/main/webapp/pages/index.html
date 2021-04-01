@@ -141,7 +141,7 @@
                 // console.log(key, keyPath);
             },
             logout() {
-                axios.get("/user/logout").then(response=>{
+                axios.get("/mm_backend_management/user/logout").then(response => {
                     sessionStorage.removeItem("userName");
                     window.location.href = "../login.html";
                 })

@@ -193,8 +193,7 @@
                     pageSize: this.pagination.pageSize,
                     queryParams: this.requestParameters
                 };
-                console.log("学科分页列表请求参数：");
-                console.log(params);
+
                 // 发送请求获取数据
                 axios.post("http://127.0.0.1:8080/mm_backend_management/course/findByPage.do", params).then(response => {
                     if (response.data.flag) {
@@ -317,7 +316,7 @@
                                 this.$message(
                                     {
                                         type: "success",
-                                        message: response.data().result.message
+                                        message: response.data().result.message,
                                         showClose: true
                                     }
                                 )

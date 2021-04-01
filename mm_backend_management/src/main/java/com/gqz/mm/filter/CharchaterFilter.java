@@ -7,6 +7,7 @@ import java.io.IOException;
 
 /**
  * 解决全站乱码问题，处理所有的请求
+ * @author gqz20
  */
 public class CharchaterFilter implements Filter {
     @Override
@@ -26,6 +27,12 @@ public class CharchaterFilter implements Filter {
         }
         //处理响应乱码
         response.setContentType("text/html;charset=utf-8");
+        //处理跨域问题
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "*");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "*");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
         filterChain.doFilter(request,response);
     }
 

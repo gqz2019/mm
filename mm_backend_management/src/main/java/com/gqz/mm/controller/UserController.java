@@ -35,7 +35,7 @@ public class UserController {
         }
 
     }
-
+    @RequestMapping("/user/logout")
     public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.getSession().invalidate();
         JsonUtils.printResult(response,new Result(true,"退出成功",null));

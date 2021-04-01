@@ -205,7 +205,7 @@
                 };
 
                 //1. 发送异步请求，获取所有学科列表
-                axios.get("/course/findAll.do?status=" + status).then(response => {
+                axios.get("/mm_backend_management/course/findAll.do?status=" + status).then(response => {
                     if (response.data.flag) {
                         //获取学科列表成功
                         this.$message({
@@ -273,7 +273,7 @@
                 console.log(params);
 
                 //发送异步请求
-                axios.post("/question/findBasicByPage.do", params).then(response => {
+                axios.post("/mm_backend_management/question/findBasicByPage.do", params).then(response => {
                     if (response.data.flag) {
                         //获取基础题库列表成功
                         //赋值操作
