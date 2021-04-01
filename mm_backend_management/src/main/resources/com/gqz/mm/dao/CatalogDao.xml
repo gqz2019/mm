@@ -5,6 +5,13 @@
 <mapper namespace="com.gqz.mm.dao.CatalogDao">
 
     <select id="findCountByCourseId" resultType="java.lang.Long" parameterType="int">
-        select count(*) from mm.t_catalog where courseId=#{id}
+        select count(*)
+        from mm.t_catalog
+        where courseId = #{id}
+    </select>
+    <select id="findCatalogListByCourseId" resultType="Catalog" parameterType="int">
+        select id name
+        from mm.t_catalog
+        where courseId = #{courseId}
     </select>
 </mapper>

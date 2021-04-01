@@ -1,5 +1,9 @@
 package com.gqz.mm.dao;
 
+import com.gqz.mm.pojo.Catalog;
+
+import java.util.List;
+
 /**
  * @program: mm
  * @description:
@@ -8,4 +12,6 @@ package com.gqz.mm.dao;
  **/
 public interface CatalogDao {
     public Long findCountByCourseId(Integer id) ;
+
+    List<Catalog> findCatalogListByCourseId(Integer id);
 }

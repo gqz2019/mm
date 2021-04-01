@@ -21,4 +21,6 @@ public interface CourseDao {
     void update(Course course);
 
     void deleteById(Integer id);
+
+    List<Course> findAll(String status);
 }

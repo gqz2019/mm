@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author gqz20
@@ -87,6 +88,19 @@ public class CourseController {
             courseService.deleteById(id);
             //删除成功
             JsonUtils.printResult(response,new Result(true,"删除学科成功"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            JsonUtils.printResult(response,new Result(false,e.getMessage()));
+        }
+    }
+    @RequestMapping("/course/findAll")
+    public void findAll(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+            String status = request.getParameter("status");
+            //2. 调用业务层的方法，根据id删除学科
+            List<Course> courseList =courseService.findAll(status);
+            //删除成功
+            JsonUtils.printResult(response,new Result(true,"查村所有学科成功",courseList));
         } catch (Exception e) {
             e.printStackTrace();
             JsonUtils.printResult(response,new Result(false,e.getMessage()));

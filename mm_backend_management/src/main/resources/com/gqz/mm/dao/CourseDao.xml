@@ -46,4 +46,9 @@
         <include refid="select_course"></include>
         limit #{offset},#{pageSize}
     </select>
+    <select id="findAll" resultType="Course" parameterType="string">
+        select *
+        from mm.t_course
+        where isShow = #{status}
+    </select>
 </mapper>

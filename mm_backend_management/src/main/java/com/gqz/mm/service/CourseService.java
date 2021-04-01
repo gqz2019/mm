@@ -6,6 +6,7 @@ import com.gqz.mm.dao.QuestionDao;
 import com.gqz.mm.dao.TagDao;
 import com.gqz.mm.entity.PageResult;
 import com.gqz.mm.entity.QueryPageBean;
+import com.gqz.mm.pojo.Catalog;
 import com.gqz.mm.pojo.Course;
 import com.gqz.mm.utils.SqlSessionFactoryUtils;
 import org.apache.ibatis.session.SqlSession;
@@ -89,5 +90,20 @@ public class CourseService {
         courseDao.deleteById(id);
 
         SqlSessionFactoryUtils.commitAndClose(sqlSession);
+    }
+
+    public List<Course> findAll(String status) throws IOException {
+        SqlSession sqlSession = SqlSessionFactoryUtils.openSqlSession();
+        CourseDao courseDao = sqlSession.getMapper(CourseDao.class);
+        CatalogDao catalogDao = sqlSession.getMapper(CatalogDao.class);
+
+        List<Course> courseList=courseDao.findAll(status);
+        for (Course course : courseList) {
+            List<Catalog> catalogList=catalogDao.findCatalogListByCourseId(course.getId());
+            course.setCatalogList(catalogList);
+        }
+
+        sqlSession.commit();
+        return courseList;
     }
 }
