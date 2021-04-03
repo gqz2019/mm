@@ -7,4 +7,7 @@
     <select id="findCountByCourseId" resultType="java.lang.Long" parameterType="int">
         select count(*) from mm.t_tag where courseId=#{id}
     </select>
+    <select id="findTagListByCourseId" resultType="Tag" parameterType="int">
+        select * from mm.t_tag where courseId=#{courseId}
+    </select>
 </mapper>

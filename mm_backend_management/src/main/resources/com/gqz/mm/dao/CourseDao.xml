@@ -46,7 +46,18 @@
         <include refid="select_course"></include>
         limit #{offset},#{pageSize}
     </select>
-    <select id="findAll" resultType="Course" parameterType="string">
+    <!--做catalog到course中catalog list的映射-->
+    <resultMap id="cataLoglistMap" type="course">
+        <id property="id" column="id"/>
+        <result column="name" property="name"/>
+        <collection property="catalogList" ofType="catalog" column="id"
+                    select="com.gqz.mm.dao.CatalogDao.findCatalogListByCourseId"/>
+        <collection property="tagList" ofType="tag" column="id"
+                    select="com.gqz.mm.dao.TagDao.findTagListByCourseId"/>
+    </resultMap>
+
+
+    <select id="findAll" resultMap="cataLoglistMap" parameterType="string">
         select *
         from mm.t_course
         where isShow = #{status}

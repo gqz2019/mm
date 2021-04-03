@@ -88,7 +88,7 @@
                                     username: this.form.userName,
                                     password: this.form.pwd
                                 };
-                                axios.post("http://localhost:8080/mm_backend_management/user/login.do", formData).then(response => {
+                                axios.post("http://localhost:8080/user/login.do", formData).then(response => {
                                         if (response.data.flag) {
 
                                             //登录成功

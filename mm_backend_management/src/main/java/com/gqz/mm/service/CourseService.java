@@ -95,13 +95,13 @@ public class CourseService {
     public List<Course> findAll(String status) throws IOException {
         SqlSession sqlSession = SqlSessionFactoryUtils.openSqlSession();
         CourseDao courseDao = sqlSession.getMapper(CourseDao.class);
-        CatalogDao catalogDao = sqlSession.getMapper(CatalogDao.class);
+//        CatalogDao catalogDao = sqlSession.getMapper(CatalogDao.class);
 
         List<Course> courseList=courseDao.findAll(status);
-        for (Course course : courseList) {
-            List<Catalog> catalogList=catalogDao.findCatalogListByCourseId(course.getId());
-            course.setCatalogList(catalogList);
-        }
+//        for (Course course : courseList) {
+//            List<Catalog> catalogList=catalogDao.findCatalogListByCourseId(course.getId());
+//            course.setCatalogList(catalogList);
+//        }
 
         sqlSession.commit();
         return courseList;
