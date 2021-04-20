@@ -1,6 +1,7 @@
 package com.gqz.mm.pojo;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -9,7 +10,7 @@ import java.util.List;
  * @version: 1.0
  */
 @Data
-public class User {
+public class User implements Serializable {
   private Integer id;
   private String username;
   private String password;

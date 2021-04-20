@@ -2,6 +2,7 @@ package com.gqz.mm.dao;
 
 import com.gqz.mm.entity.QueryPageBean;
 import com.gqz.mm.pojo.Course;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -22,5 +23,5 @@ public interface CourseDao {
 
     void deleteById(Integer id);
 
-    List<Course> findAll(String status);
+    List<Course> findAll(@Param("status") String status);
 }

@@ -3,6 +3,22 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gqz.mm.dao.QuestionDao">
+    <insert id="add" parameterType="question">
+        insert into mm.t_question(subject, type, difficulty, analysis, analysisVideo,
+        remark, isClassic, status, reviewStatus, createDate,
+        userId, companyId, catalogId, courseId)
+        values (#{subject},#{type},#{difficulty},#{analysis},#{analysisVideo},
+        #{remark},#{isClassic},#{status},#{reviewStatus},#{createDate},
+        #{userId},#{companyId},#{catalogId},#{courseId})
+        <selectKey resultType="int" keyProperty="id" keyColumn="id" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+    <insert id="addQuestionTag" parameterType="map">
+        insert into mm.tr_question_tag
+        values (#{questionId},
+                #{tagId})
+    </insert>
 
     <select id="findCountByCourseId" resultType="Long" parameterType="int">
         select count(*)

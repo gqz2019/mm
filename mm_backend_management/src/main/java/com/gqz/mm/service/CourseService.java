@@ -9,6 +9,7 @@ import com.gqz.mm.entity.QueryPageBean;
 import com.gqz.mm.pojo.Catalog;
 import com.gqz.mm.pojo.Course;
 import com.gqz.mm.utils.SqlSessionFactoryUtils;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 
 import java.io.IOException;

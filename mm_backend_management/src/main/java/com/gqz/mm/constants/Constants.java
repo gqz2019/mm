@@ -18,7 +18,7 @@ public interface Constants {
     int QUESTION_PRE_REVIEW = 0;            // 待审核 0
     int QUESTION_REVIEWED = 1;            // 已审核 1
     int QUESTION_REJECT_REVIEW = 2;        // 已拒绝 2
-    /*
+    /**
     * session中的key
     * */
     String LONGIN_USER="login_user";

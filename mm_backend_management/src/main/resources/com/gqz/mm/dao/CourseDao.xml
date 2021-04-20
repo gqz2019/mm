@@ -56,10 +56,12 @@
                     select="com.gqz.mm.dao.TagDao.findTagListByCourseId"/>
     </resultMap>
 
-
     <select id="findAll" resultMap="cataLoglistMap" parameterType="string">
         select *
         from mm.t_course
-        where isShow = #{status}
+        <if test="status!=null and status!=''and status!='null'">
+            where isShow = #{status}
+        </if>
+
     </select>
 </mapper>

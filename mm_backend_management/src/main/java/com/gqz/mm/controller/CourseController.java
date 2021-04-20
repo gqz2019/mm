@@ -43,6 +43,7 @@ public class CourseController {
             //拿到用户id
             User user = (User)request.getSession().getAttribute(Constants.LONGIN_USER);
             course.setUserId(user.getId());
+//            course.setUserId((Integer) request.getSession().getAttribute(Constants.LONGIN_USER));
             course.setOrderNo(2);
             //调用service方法
 

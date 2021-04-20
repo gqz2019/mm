@@ -3,6 +3,7 @@ package com.gqz.mm.dao;
 import com.gqz.mm.entity.QueryPageBean;
 import com.gqz.mm.pojo.Question;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -17,4 +18,8 @@ public interface QuestionDao {
     Long getTotalBasicCount(QueryPageBean queryPageBean);
 
     List<Question> findBasicQuesionList(QueryPageBean queryPageBean);
+
+    void add(Question question);
+
+    void addQuestionTag(HashMap<String, Integer> map);
 }
