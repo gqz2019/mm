@@ -7,11 +7,13 @@
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/mm_backend_management" />
+    <file type="web" url="file://$PROJECT_DIR$/mm_wx_api" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/mm_backend_management/pom.xml" />
+        <option value="$PROJECT_DIR$/mm_wx_api/pom.xml" />
       </list>
     </option>
   </component>
@@ -19,7 +21,7 @@
     <resource url="http://mybatis.org/dtd/mybatis-3-config.dtd" location="" />
     <resource url="http://mybatis.org/dtd/mybatis-3-mapper.dtd" location="" />
   </component>
-  <component name="ProjectRootManager">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="15" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

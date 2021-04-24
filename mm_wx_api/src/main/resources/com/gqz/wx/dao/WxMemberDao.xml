@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gqz.wx.dao.WxMemberDao">
+    <insert id="addWxMember">
+        insert into t_wx_member(nickName,avatarUrl,gender,city,province,country,language,openId,createTime)
+        values (#{nickName},#{avatarUrl},#{gender},#{city},#{province},#{country},#{language},#{openId},#{createTime})
+
+        <selectKey keyColumn="id" keyProperty="id" resultType="int" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+
+    <select id="findByNickname" resultType="WxMember" parameterType="string">
+        select * from t_wx_member where nickname=#{nickname}
+    </select>
+</mapper>

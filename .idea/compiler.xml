@@ -8,10 +8,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="mm_backend_management" />
+        <module name="mm_wx_api" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="15">
       <module name="mm_backend_management" target="15.0.1" />
+      <module name="mm_wx_api" target="15.0.1" />
     </bytecodeTargetLevel>
   </component>
 </project>
