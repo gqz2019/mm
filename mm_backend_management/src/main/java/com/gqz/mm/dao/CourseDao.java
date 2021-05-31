@@ -3,6 +3,7 @@ package com.gqz.mm.dao;
 import com.gqz.mm.entity.QueryPageBean;
 import com.gqz.mm.pojo.Course;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * @author: gqz20
  * @create: 2021-03-18 14:07
  **/
+@Repository
 public interface CourseDao {
     void add(Course course);
 

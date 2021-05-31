@@ -13,12 +13,12 @@
     </welcome-file-list>
     <servlet>
         <servlet-name>dispatcherServlet</servlet-name>
-        <servlet-class>com.itheima.framework.servlet.DispatcherServlet</servlet-class>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 
         <!--初始化参数，配置要扫描的包名-->
         <init-param>
-            <param-name>scanPackage</param-name>
-            <param-value>com.gqz.mm.controller</param-value>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:applicationcontext.xml</param-value>
         </init-param>
 
         <!--启动时加载-->
@@ -30,7 +30,7 @@
     </servlet-mapping>
     <filter>
         <filter-name>CharchaterFilter</filter-name>
-        <filter-class>com.gqz.mm.filter.CharchaterFilter</filter-class>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>CharchaterFilter</filter-name>

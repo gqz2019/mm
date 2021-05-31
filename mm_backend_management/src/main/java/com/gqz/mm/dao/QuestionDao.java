@@ -2,6 +2,7 @@ package com.gqz.mm.dao;
 
 import com.gqz.mm.entity.QueryPageBean;
 import com.gqz.mm.pojo.Question;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
  * @author: gqz20
  * @create: 2021-03-26 22:28
  **/
+@Repository
 public interface QuestionDao {
     Long findCountByCourseId(Integer id) ;
 

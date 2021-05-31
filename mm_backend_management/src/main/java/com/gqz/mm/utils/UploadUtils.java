@@ -3,6 +3,9 @@ package com.gqz.mm.utils;
 import java.util.Random;
 import java.util.UUID;
 
+/**
+ * @author gqz20
+ */
 public class UploadUtils {
 	
 	/**
